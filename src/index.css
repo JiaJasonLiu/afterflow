@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+
+@theme {
+  --font-display: 'Outfit Variable', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+
+  --color-ink: #0f0d13;
+  --color-panel: #191521;
+  --color-panel-2: #221d2e;
+  --color-line: #2e2839;
+  --color-cream: #f3eee7;
+  --color-dim: #9c93a8;
+  --color-ember: #ffb454;
+  --color-rose: #ff6b7a;
+}
+
+html, body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* the afterglow: warm gradient used for the check-in loop */
+.glow-gradient {
+  background-image: linear-gradient(120deg, #ffb454, #ff6b7a);
+}
+.glow-text {
+  background-image: linear-gradient(120deg, #ffb454, #ff6b7a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes pop-in {
+  0% { transform: translateY(14px) scale(0.96); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.animate-pop-in { animation: pop-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 138, 106, 0.55); }
+  100% { box-shadow: 0 0 0 26px rgba(255, 138, 106, 0); }
+}
+.animate-glow-pulse { animation: glow-pulse 500ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop-in, .animate-glow-pulse { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* thin scrollbars on desktop preview */
+* { scrollbar-width: thin; scrollbar-color: #2e2839 transparent; }
